@@ -17,7 +17,7 @@ Cell[][] grid;
 
 void setup() {
   size(500, 500);
-  //frameRate(20);
+  frameRate(1000);
   up = loadImage("assets/up.png");
   down = loadImage("assets/down.png");
   left = loadImage("assets/left.png");
@@ -37,11 +37,12 @@ void setup() {
       grid[r][c].setImage(blank);
     }
   }
-
+  
   // set the top left cell to the up image
   grid[0][0].setImage(up);
 
-
+  // apply the Wave Function Collapse algorithm to the randomly selected cell
+  waveFunctionCollapse();
 }
 
 void draw() {
@@ -50,8 +51,7 @@ void draw() {
   int randomRow = int(random(numRows));
   int randomCol = int(random(numCols));
   grid[randomRow][randomCol].display();
-  // apply the Wave Function Collapse algorithm to the randomly selected cell
-  waveFunctionCollapse();
+
 }
 
 // void waveFunctionCollapse() {
