@@ -14,7 +14,7 @@ Cell[][] grid;
 
 void setup() {
   size(500, 500);
-  frameRate(1);
+  frameRate(20);
   up = loadImage("assets/up.png");
   down = loadImage("assets/down.png");
   left = loadImage("assets/left.png");
@@ -38,22 +38,20 @@ void setup() {
   // set the top left cell to the up image
   grid[0][0].setImage(up);
 
-  // apply the Wave Function Collapse algorithm to the grid
-  waveFunctionCollapse();
+
 }
 
 void draw() {
-  background(255);
-  for (int r = 0; r < numRows; r++) {
-    for (int c = 0; c < numCols; c++) {
-      grid[r][c].display();
-    }
-  }
+  //background(255);
+  // select a random cell to draw
+  int randomRow = int(random(numRows));
+  int randomCol = int(random(numCols));
+  grid[randomRow][randomCol].display();
+  // apply the Wave Function Collapse algorithm to the randomly selected cell
+  waveFunctionCollapse();
 }
 
 void waveFunctionCollapse() {
-  randomSeed(millis());  // use the current time as the random seed
-
   // create a list of possible images for each cell
   List<List<List<PImage>>> possibleImages = new ArrayList<>();
   for (int r = 0; r < numRows; r++) {
@@ -85,10 +83,10 @@ void waveFunctionCollapse() {
         images.remove(leftImage);
       }
 
-      // select a random image from the list of possible images
-      int randomIndex = int(random(images.size()));
-      PImage selectedImage = images.get(randomIndex);
+      // select the most likely image for this cell
+      PImage selectedImage = images.get(0);
       grid[r][c].setImage(selectedImage);
     }
   }
 }
+
