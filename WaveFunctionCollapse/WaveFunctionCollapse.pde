@@ -41,8 +41,6 @@ void setup() {
   // set the top left cell to the up image
   grid[0][0].setImage(up);
 
-  // apply the Wave Function Collapse algorithm to the randomly selected cell
-  waveFunctionCollapse();
 }
 
 void draw() {
@@ -51,11 +49,8 @@ void draw() {
   int randomRow = int(random(numRows));
   int randomCol = int(random(numCols));
   grid[randomRow][randomCol].display();
-<<<<<<< Updated upstream
-=======
   // apply the Wave Function Collapse algorithm to the randomly selected cell
   waveFunctionCollapse(randomRow, randomCol);
->>>>>>> Stashed changes
 
 }
 
